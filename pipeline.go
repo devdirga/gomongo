@@ -2,6 +2,24 @@ package gomongo
 
 import "go.mongodb.org/mongo-driver/bson"
 
+// PipeSortParams = params model for pipe sort multiple
+type PipeSortParams struct {
+	Field     string
+	Ascending bool
+}
+
+// PipeSwitchCaseParams = case model for pipe switch cases
+type PipeSwitchCaseParams struct {
+	Case *Filter
+	Then interface{}
+}
+
+// PipeSwitchParams = params model for pipe switch
+type PipeSwitchParams struct {
+	Cases   []PipeSwitchCaseParams
+	Default interface{}
+}
+
 // PipeUnwind = create pipe for unwind arrays. To spesify, prefix the field with dollar sign ($)
 func PipeUnwind(path string, showEmptyArrays bool) bson.M {
 	m := bson.M{
