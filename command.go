@@ -214,7 +214,6 @@ func (c *Command) DeleteOne() (int64, error) {
 	return res.DeletedCount, nil
 }
 
-// DeleteAll = delete all data with filter or pipe
 func (c *Command) DeleteAll() (int64, error) {
 	client := c.set.gom.GetClient()
 	collection := client.Database(c.set.gom.GetDatabase()).Collection(c.set.tableName)
