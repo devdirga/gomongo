@@ -217,27 +217,22 @@ func (c *Command) DeleteOne() (int64, error) {
 // DeleteAll = delete all data with filter or pipe
 func (c *Command) DeleteAll() (int64, error) {
 	client := c.set.gom.GetClient()
-
 	collection := client.Database(c.set.gom.GetDatabase()).Collection(c.set.tableName)
-
 	ctx, cancelFunc := c.set.GetContext()
 	defer cancelFunc()
-
 	res, err := collection.DeleteMany(ctx, c.set.filter)
-
 	if err != nil {
 		return 0, err
 	}
-
 	return res.DeletedCount, nil
 }
 
 func (c *Command) Drop() error {
-	clt := c.set.gom.GetClient()
-	coll := clt.Database(c.set.gom.GetDatabase()).Collection(c.set.tableName)
+	client := c.set.gom.GetClient()
+	collection := client.Database(c.set.gom.GetDatabase()).Collection(c.set.tableName)
 	ctx, cancelFunc := c.set.GetContext()
 	defer cancelFunc()
-	err := coll.Drop(ctx)
+	err := collection.Drop(ctx)
 	if err != nil {
 		return err
 	}
