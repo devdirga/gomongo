@@ -17,7 +17,7 @@ func NewGomongo() *Gomongo {
 	return new(Gomongo)
 }
 
-func (g *Gomongo) Init(c Config) {
+func (g *Gomongo) Initx(c Config) {
 	g.mongo.SetConfig(c)
 	g.mongo.SetClient()
 }

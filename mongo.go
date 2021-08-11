@@ -39,10 +39,6 @@ type Config struct {
 	RegistryBuilder bool
 }
 
-func newMongo() *mongoDB {
-	return new(mongoDB)
-}
-
 func (m *mongoDB) SetConfig(c Config) {
 	m.Config = c
 }
