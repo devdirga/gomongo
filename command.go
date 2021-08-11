@@ -232,20 +232,14 @@ func (c *Command) DeleteAll() (int64, error) {
 	return res.DeletedCount, nil
 }
 
-// Drop = drop table/collection
 func (c *Command) Drop() error {
-	client := c.set.gom.GetClient()
-
-	collection := client.Database(c.set.gom.GetDatabase()).Collection(c.set.tableName)
-
+	clt := c.set.gom.GetClient()
+	coll := clt.Database(c.set.gom.GetDatabase()).Collection(c.set.tableName)
 	ctx, cancelFunc := c.set.GetContext()
 	defer cancelFunc()
-
-	err := collection.Drop(ctx)
-
+	err := coll.Drop(ctx)
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
